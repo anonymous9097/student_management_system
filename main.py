@@ -4,6 +4,8 @@ from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, QWidget, QGridLay
     QLineEdit, QPushButton, QMainWindow, QTableWidget
 from PyQt6.QtGui import QAction
 
+import sqlite3
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -25,8 +27,14 @@ class MainWindow(QMainWindow):
         self.table.setHorizontalHeaderLabels(("ID", "Name", "Course", "Mobile"))
         self.setCentralWidget(self.table)
 
+    def load_data(self):
+        connection = sqlite3.connect("database.db")
+        result = connection.execute("SELECT * FROM students")
+        print(list(result))
+
 
 app = QApplication(sys.argv)
 age_calculator = MainWindow()
 age_calculator.show()
+age_calculator.load_data()
 sys.exit(app.exec())
