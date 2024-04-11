@@ -126,8 +126,8 @@ class EditDialog(QDialog):
         layout.addWidget(self.course_name)
 
         # Add Mobile no. widget
-        mobile = main_window.table.item(index, 1).text()
-        self.mobile = QLineEdit()
+        mobile = main_window.table.item(index, 3).text()
+        self.mobile = QLineEdit(mobile)
         self.mobile.setPlaceholderText("Mobile")
         layout.addWidget(self.mobile)
 
